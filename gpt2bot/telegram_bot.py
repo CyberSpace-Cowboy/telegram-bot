@@ -89,9 +89,8 @@ def send_action(action):
 
 
 send_typing_action = send_action(ChatAction.TYPING)
-
-
 @send_typing_action
+
 def message(self, update, context):
     """Receive message, generate response, and send it back to the user."""
 
