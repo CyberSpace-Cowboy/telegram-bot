@@ -18,8 +18,9 @@ def start_command(update, context):
 
     logger.debug(f"{update.effective_message.chat_id} - User: /start")
     context.chat_data['turns'] = []
-    update.message.reply_text("Just start texting me. "
-                              "Append \"@gif\" for me to generate a GIF. "
+    update.message.reply_text("Hello, I'm your startup mentor. "
+                              "To start ask me about startups"
+                              "If you wanna have some fun - append \"@gif\" for me to generate a GIF. "
                               "If I'm getting annoying, type \"/reset\". "
                               "Make sure to send no more than one message per turn.")
 
