@@ -18,20 +18,20 @@ def start_command(update, context):
 
     logger.debug(f"{update.effective_message.chat_id} - User: /start")
     context.chat_data['turns'] = []
-    update.message.reply_text("Heeyyyy, I'm gonna be your startup mentor.😎 "
-                              "I will: "
-                              "🎯 Help You Set Goals and Work on Them  \"/set-goals\". " 
-                              "✅ Check Your Progress on a Regular Basis \"/progress-check\". "
-                              "🧠 Share Knowledge, Skills & Expertise \"/expertise\". "
-                              "🔥 Provide with Tasks, Challenges & Resources \"/get-tasks\". "
-                              "🤗 Give Advice & Support. "
-                              "💬 Text & Discuss Anything With You. "
-                              "💪 Motivate You \"/motivate-me\".  "
-                              "🚀 Help You Develop Contacts & Explore Careers \"/careers\".  "
-                              "\n"
-                              "To have some fun - append \"@gif\" for me to generate a GIF. "
-                              "If I'm getting annoying, type \"/reset\". "
-                              "Make sure to send no more than one message per turn.")
+    update.message.reply_text("Heeyyyy, I'm gonna be your startup mentor.😎 \n"
+                              "I will: \n"
+                              "🎯 Help You Set Goals and Work on Them  \"/set-goals\". \n" 
+                              "✅ Check Your Progress on a Regular Basis \"/progress-check\". \n"
+                              "🧠 Share Knowledge, Skills & Expertise \"/expertise\". \n"
+                              "🔥 Provide with Tasks, Challenges & Resources \"/get-tasks\". \n"
+                              "🤗 Give Advice & Support. \n"
+                              "💬 Text & Discuss Anything With You. \n"
+                              "💪 Motivate You \"/motivate-me\".  \n"
+                              "🚀 Help You Develop Contacts & Explore Careers \"/careers\".  \n"
+                              "\n \n"
+                              "To have some fun - append \"@gif\" for me to generate a GIF. \n"
+                              "If I'm getting annoying, type \"/reset\". \n"
+                              "Make sure to send no more than one message per turn. \n")
 
 
 """
