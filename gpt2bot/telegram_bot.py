@@ -52,7 +52,21 @@ def progress_command(update, context):
     
     turns = context.chat_data['turns']
     update.message.reply_text("🎯 Progress Check: \n"
-                              "Hey, what's the progress with your goals?")
+                              "Hey, what's the progress with your goals? \n"
+                              "Precisely describe what you did, what you do "
+                              "now and what you're planning to do in the nearest future. \n"
+                              "You can also ask me for advice")
+
+def expertise_command(update, context):
+    #help the user set goals when the user presses "/goals".
+
+    logger.debug(f"{update.effective_message.chat_id} - User: /expertise")
+    
+    turns = context.chat_data['turns']
+    update.message.reply_text("😎 Let Me Share With You Some Essential Knowledge, Skills: \n")
+
+
+ 
 
 def reset_command(update, context):
     """Reset the dialogue when user sends the command "/reset"."""
@@ -258,6 +272,7 @@ class TelegramBot:
         dp.add_handler(CommandHandler('start', start_command))
         dp.add_handler(CommandHandler('goals', goals_command))
         dp.add_handler(CommandHandler('progress', progress_command))
+        dp.add_handler(CommandHandler('expertise', expertise_command))
         dp.add_handler(CommandHandler('reset', reset_command))
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
