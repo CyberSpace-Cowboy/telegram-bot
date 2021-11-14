@@ -38,10 +38,19 @@ def set_goals_command(update, context):
     """help the user set goals when the user presses "/set-goals"."""
 
     logger.debug(f"{update.effective_message.chat_id} - User: /set-goals")
+    
+    if 'turns' not in context.chat_data:
+        context.chat_data['turns'] = []
+    turns = context.chat_data['turns']
+    turn = {
+        'user_messages': [],
+        'bot_messages': []
+    }
+
     update.message.reply_text("Now let's set some awesome, measurable goals! 🎯"
                               "Do you have anything you would wanna accomplish " 
                               "with startups this year? Something ambitious would be great!🔥")
-    """if 'turns' not in context.chat_data:
+    if 'turns' not in context.chat_data:
         context.chat_data['turns'] = []
     turns = context.chat_data['turns']
     turn = {
@@ -57,7 +66,7 @@ def set_goals_command(update, context):
     for turn in turns[from_index:]:
         # Each turn begins with user messages
         for user_message in turn['user_messages']:
-            prompt += clean_text(user_message)"""
+            prompt += clean_text(user_message)
 
     update.message.reply_text("Awesome! "
                               "You should start working on this asap! ")
