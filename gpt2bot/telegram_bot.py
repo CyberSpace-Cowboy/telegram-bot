@@ -20,10 +20,10 @@ def start_command(update, context):
     context.chat_data['turns'] = []
     update.message.reply_text("Heeyyyy, I'm gonna be your startup mentor.😎 \n"
                               "I will: \n"
-                              "🎯 Help You Set Goals and Work on Them  \"/set-goals\". \n" 
-                              "✅ Check Your Progress on a Regular Basis \"/progress-check\". \n"
+                              "🎯 Help You Set Goals and Work on Them  \"/goals\". \n" 
+                              "✅ Check Your Progress on a Regular Basis \"/progress\". \n"
                               "🧠 Share Knowledge, Skills & Expertise \"/expertise\". \n"
-                              "🔥 Provide with Tasks, Challenges & Resources \"/get-tasks\". \n"
+                              "🔥 Provide with Tasks, Challenges & Resources \"/tasks\". \n"
                               "🤗 Give Advice & Support. \n"
                               "💬 Text & Discuss Anything With You. \n"
                               "💪 Motivate You \"/motivate-me\".  \n"
@@ -34,16 +34,17 @@ def start_command(update, context):
                               "Make sure to send no more than one message per turn. \n")
 
 
-"""
-def set_goals_command(update, context):
-    #help the user set goals when the user presses "/set-goals".
 
-    logger.debug(f"{update.effective_message.chat_id} - User: /set-goals")
+def goals_command(update, context):
+    #help the user set goals when the user presses "/goals".
+
+    logger.debug(f"{update.effective_message.chat_id} - User: /goals")
     
     turns = context.chat_data['turns']
-    update.message.reply_text("Now let's set some awesome, measurable goals! 🎯"
-                              "Do you have anything you would wanna accomplish " 
+    update.message.reply_text("Now let's set some awesome, measurable goals! 🎯 \n"
+                              "Do you have anything you would wanna accomplish \n" 
                               "with startups this year? Something ambitious would be great!🔥")
+"""
     if 'turns' not in context.chat_data:
         context.chat_data['turns'] = []
     turns = context.chat_data['turns']
@@ -279,7 +280,7 @@ class TelegramBot:
         # Add command, message and error handlers
         dp = self.updater.dispatcher
         dp.add_handler(CommandHandler('start', start_command))
-        #dp.add_handler(CommandHandler('set-goals', set_goals_command))
+        dp.add_handler(CommandHandler('goals', goals_command))
         dp.add_handler(CommandHandler('reset', reset_command))
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
