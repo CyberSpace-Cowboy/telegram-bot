@@ -38,20 +38,12 @@ def set_goals_command(update, context):
     """help the user set goals when the user presses "/set-goals"."""
 
     logger.debug(f"{update.effective_message.chat_id} - User: /set-goals")
-    context.chat_data['turns'] = []
     update.message.reply_text("Now let's set some awesome, measurable goals! 🎯"
                               "Do you have anything you would wanna accomplish " 
                               "with startups this year? Something ambitious would be great!🔥")
-    
-    """
-    if 'turns' not in context.chat_data:
+    """if 'turns' not in context.chat_data:
         context.chat_data['turns'] = []
     turns = context.chat_data['turns']
-
-    user_message = update.message.text
-    if max_turns_history == 0:
-        context.chat_data['turns'] = []
-    # A single turn is a group of user messages and bot responses right after
     turn = {
         'user_messages': [],
         'bot_messages': []
@@ -65,12 +57,9 @@ def set_goals_command(update, context):
     for turn in turns[from_index:]:
         # Each turn begins with user messages
         for user_message in turn['user_messages']:
-            prompt += clean_text(user_message) + self.generation_pipeline.tokenizer.eos_token
-        for bot_message in turn['bot_messages']:
-            prompt += clean_text(bot_message) + self.generation_pipeline.tokenizer.eos_token"""    
+            prompt += clean_text(user_message)"""
 
-
-    update.message.reply_text("Awesome! "s
+    update.message.reply_text("Awesome! "
                               "You should start working on this asap! ")
 
 
