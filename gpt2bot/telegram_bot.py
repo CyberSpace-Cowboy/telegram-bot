@@ -72,9 +72,10 @@ def expertise_command(update, context):
                               "Nor is it necessary for a startup to work on technology, or take "
                               "venture funding, or have some sort of 'exit.' "
                               "The only essential thing is growth. "
-                              "Everything else we associate with startups follows from growth."
+                              "Everything else we associate with startups follows from growth.\n"
                               "\n"
                               "🔥 Crucial Skills for Startups: \n")
+                              "\n"
                               "1. Starting From Problems. \n"
                               "2. Coming Up With Unique Ideas. \n"
                               "3. Finding a Great Competitor Advantage. \n"
