@@ -34,19 +34,13 @@ def start_command(update, context):
                               "Make sure to send no more than one message per turn.")
 
 
+"""
 def set_goals_command(update, context):
-    """help the user set goals when the user presses "/set-goals"."""
+    #help the user set goals when the user presses "/set-goals".
 
     logger.debug(f"{update.effective_message.chat_id} - User: /set-goals")
     
-    if 'turns' not in context.chat_data:
-        context.chat_data['turns'] = []
     turns = context.chat_data['turns']
-    turn = {
-        'user_messages': [],
-        'bot_messages': []
-    }
-
     update.message.reply_text("Now let's set some awesome, measurable goals! 🎯"
                               "Do you have anything you would wanna accomplish " 
                               "with startups this year? Something ambitious would be great!🔥")
@@ -70,7 +64,7 @@ def set_goals_command(update, context):
 
     update.message.reply_text("Awesome! "
                               "You should start working on this asap! ")
-
+"""
 
 
 """"def set_goals_command(update, context):
