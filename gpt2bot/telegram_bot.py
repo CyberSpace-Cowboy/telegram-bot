@@ -26,7 +26,7 @@ def start_command(update, context):
                               "🔥 Provide with Tasks, Challenges & Resources \"/tasks\". \n"
                               "🤗 Give Advice & Support. \n"
                               "💬 Text & Discuss Anything With You. \n"
-                              "💪 Motivate You \"/motivate-me\".  \n"
+                              "💪 Motivate You \"/motivate\".  \n"
                               "🚀 Help You Develop Contacts & Explore Careers \"/careers\".  \n"
                               "\n \n"
                               "To have some fun - append \"@gif\" for me to generate a GIF. \n"
@@ -63,7 +63,31 @@ def expertise_command(update, context):
     logger.debug(f"{update.effective_message.chat_id} - User: /expertise")
     
     turns = context.chat_data['turns']
-    update.message.reply_text("😎 Let Me Share With You Some Essential Knowledge, Skills: \n")
+    update.message.reply_text("😎 Ok, Let Me Share With You Some Essential Knowledge & Skills: \n"
+                              "\n"
+                              "🧠 Fundumental Knowledge about Startups: "
+                              "\n"
+                              "A startup is a company designed to grow fast."
+                              "Being newly founded does not in itself make a company a startup. "
+                              "Nor is it necessary for a startup to work on technology, or take "
+                              "venture funding, or have some sort of 'exit.' "
+                              "The only essential thing is growth. "
+                              "Everything else we associate with startups follows from growth."
+                              "\n"
+                              "🔥 Crucial Skills for Startups: \n")
+                              "1. Starting From Problems. \n"
+                              "2. Coming Up With Unique Ideas. \n"
+                              "3. Finding a Great Competitor Advantage. \n"
+                              "4. Conducting Customer Development Interviews. \n"
+                              "5. Calculating Metrics & Competitor Analysis. \n"
+                              "6. Getting Insigths & Starting Validation. \n"
+                              "7. Prototyping & Experimenting. \n"
+                              "8. Quick and Easy Demand Testing. \n"
+                              "9. Runing Continous Feedback Loop. \n"
+                              "10. Pitching to Investors & Geting Funding. \n"
+
+                              
+
 
 
  
