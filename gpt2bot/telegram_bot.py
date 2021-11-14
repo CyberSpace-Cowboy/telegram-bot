@@ -279,9 +279,8 @@ class TelegramBot:
         # Add command, message and error handlers
         dp = self.updater.dispatcher
         dp.add_handler(CommandHandler('start', start_command))
-        dp.add_handler(CommandHandler('set-goals', set_goals_command))
+        #dp.add_handler(CommandHandler('set-goals', set_goals_command))
         dp.add_handler(CommandHandler('reset', reset_command))
-        dp.add_handler(CommandHandler('set-goals', set_goals_command))
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
 
