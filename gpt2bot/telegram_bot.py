@@ -30,7 +30,7 @@ def start_command(update, context):
                               "🚀 Help You Develop Contacts & Explore Careers \"/careers\".  \n"
                               "\n \n"
                               "To have some fun - append \"@gif\" for me to generate a GIF. \n"
-                              "If I'm getting annoying, type \"/reset\". \n"
+                              "If I'm getting annoying, type \"/reset\" or \"/start\" \n"
                               "Make sure to send no more than one message per turn. \n")
 
 
@@ -42,11 +42,17 @@ def goals_command(update, context):
     
     turns = context.chat_data['turns']
     update.message.reply_text("Now let's set some awesome, measurable goals! 🎯 \n"
-                              "Do you have anything you would wanna accomplish \n" 
+                              "Do you have anything you would wanna accomplish " 
                               "with startups this year? Something ambitious would be great!🔥")
-    turns = context.chat_data['turns']
-    update.message.reply_text("So awesome! I believe you can actually do it! ")
 
+def progress_command(update, context):
+    #help the user set goals when the user presses "/goals".
+
+    logger.debug(f"{update.effective_message.chat_id} - User: /progress")
+    
+    turns = context.chat_data['turns']
+    update.message.reply_text("🎯 Progress Check: \n"
+                              "Hey, what's the progress with your goals?")
 
 def reset_command(update, context):
     """Reset the dialogue when user sends the command "/reset"."""
@@ -251,6 +257,7 @@ class TelegramBot:
         dp = self.updater.dispatcher
         dp.add_handler(CommandHandler('start', start_command))
         dp.add_handler(CommandHandler('goals', goals_command))
+        dp.add_handler(CommandHandler('progress', progress_command))
         dp.add_handler(CommandHandler('reset', reset_command))
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
