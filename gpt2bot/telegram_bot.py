@@ -95,7 +95,22 @@ def tasks_command(update, context):
                               "Here's a list of tasks you should try: \n"
                               "Here's a list of challenges you should do: "
                               "Here's a list of resources you check out: \n")
- 
+
+def motivate_command(update, context):
+
+    logger.debug(f"{update.effective_message.chat_id} - User: /motivate")
+    
+    turns = context.chat_data['turns']
+    update.message.reply_text("💪 Let let me try to motivate you: \n")
+
+
+def careers_command(update, context):
+s
+    logger.debug(f"{update.effective_message.chat_id} - User: /careers")
+    
+    turns = context.chat_data['turns']
+    update.message.reply_text("💪 Let let me try to motivate you: \n")
+
 
 def reset_command(update, context):
     """Reset the dialogue when user sends the command "/reset"."""
