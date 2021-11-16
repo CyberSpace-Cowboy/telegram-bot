@@ -58,7 +58,6 @@ def progress_command(update, context):
                               "You can also ask me for advice")
 
 def expertise_command(update, context):
-    #help the user set goals when the user presses "/goals".
 
     logger.debug(f"{update.effective_message.chat_id} - User: /expertise")
     
@@ -87,10 +86,15 @@ def expertise_command(update, context):
                                 "9. Runing Continous Feedback Loop. \n"
                                 "10. Pitching to Investors & Geting Funding. \n")
 
-                              
+def tasks_command(update, context):
 
-
-
+    logger.debug(f"{update.effective_message.chat_id} - User: /tasks")
+    
+    turns = context.chat_data['turns']
+    update.message.reply_text("🔥 Tasks, Challenges & Resources: \n"
+                              "Here's a list of tasks you should try: \n"
+                              "Here's a list of challenges you should do: "
+                              "Here's a list of resources you check out: \n")
  
 
 def reset_command(update, context):
