@@ -109,7 +109,7 @@ s
     logger.debug(f"{update.effective_message.chat_id} - User: /careers")
     
     turns = context.chat_data['turns']
-    update.message.reply_text("💪 Let let me try to motivate you: \n")
+    update.message.reply_text("🚀 Ok, let's develop contacts and explore careers: \n")
 
 
 def reset_command(update, context):
@@ -317,6 +317,9 @@ class TelegramBot:
         dp.add_handler(CommandHandler('goals', goals_command))
         dp.add_handler(CommandHandler('progress', progress_command))
         dp.add_handler(CommandHandler('expertise', expertise_command))
+        dp.add_handler(CommandHandler('tasks', tasks_command))
+        dp.add_handler(CommandHandler('motivate', motivate_command))
+        dp.add_handler(CommandHandler('careers', careers_command))
         dp.add_handler(CommandHandler('reset', reset_command))
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
