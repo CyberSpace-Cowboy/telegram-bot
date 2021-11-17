@@ -105,7 +105,7 @@ def motivate_command(update, context):
 
 
 def careers_command(update, context):
-s
+
     logger.debug(f"{update.effective_message.chat_id} - User: /careers")
     
     turns = context.chat_data['turns']
@@ -237,7 +237,7 @@ def message(self, update, context):
     logger.debug(f"{update.effective_message.chat_id} - Bot: {bot_message}")
     # Return response as text
     update.message.reply_text(bot_message)
-    if len(bot_message.split()) <= giphy_max_words and random.random() < giphy_prob:
+    if len(bot_message.split()) <= gciphy_max_words and random.random() < giphy_prob:
         return_gif = True
     if return_gif:
         # Also return the response as a GIF
