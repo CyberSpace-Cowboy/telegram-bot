@@ -34,7 +34,6 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
 
-
 def setup_logger(name):
     """Set up logger."""
     # create logger

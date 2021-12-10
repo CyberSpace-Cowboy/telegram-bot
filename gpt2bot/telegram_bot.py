@@ -7,14 +7,13 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 import pickle
 import os.path
-
 from .utils import *
 
 logger = setup_logger(__name__)
 
 
 def start_command(update, context):
-    """Start a new dialogue when user sends the command "/start"."""
+    """Start a new dialogue when user seds the command "/start"."""
 
     logger.debug(f"{update.effective_message.chat_id} - User: /start")
     context.chat_data['turns'] = []
@@ -136,7 +135,6 @@ def requests_retry_session(retries=3, backoff_factor=0.3, status_forcelist=(500,
     session.mount('https://', adapter)
     return session
 
-
 def translate_message_to_gif(message, **chatbot_params):
     """Translate message text into a GIF.
 
@@ -147,10 +145,10 @@ def translate_message_to_gif(message, **chatbot_params):
         's': message,
         'weirdness': chatbot_params.get('giphy_weirdness', 5)
     }
+    #urlencode makes this: 'http://api.giphy.com/v1/gifs/translate?api_key=giphy_token&s=Hello&weirdness=10'
     url = "http://api.giphy.com/v1/gifs/translate?" + urlencode(params)
     response = requests_retry_session().get(url)
     return response.json()['data']['images']['fixed_height']['url']
-
 
 def self_decorator(self, func):
     """Passes bot object to func command."""
@@ -168,6 +166,7 @@ def send_action(action):
     def decorator(func):
         @wraps(func)
         def command_func(self, update, context, *args, **kwargs):
+            #key thing here: action is ChatAction.TYPING
             context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=action)
             return func(self, update, context, *args, **kwargs)
 
@@ -177,8 +176,8 @@ def send_action(action):
 
 
 send_typing_action = send_action(ChatAction.TYPING)
-@send_typing_action
 
+@send_typing_action
 def message(self, update, context):
     """Receive message, generate response, and send it back to the user."""
 
@@ -207,7 +206,7 @@ def message(self, update, context):
     turn['user_messages'].append(user_message)
     logger.debug(f"{update.effective_message.chat_id} - User: {user_message}")
     # Merge turns into a single prompt (don't forget EOS token)
-    prompt = ""
+    prompt = "I'm your startup mentor, I will help you build a successful startup<|endoftext|>Hi, that's so cool, I'm super excited! It's my dream to make a successful startup!<|endoftext|>"
     from_index = max(len(turns) - max_turns_history - 1, 0) if max_turns_history >= 0 else 0
     for turn in turns[from_index:]:
         # Each turn begins with user messages
@@ -237,7 +236,7 @@ def message(self, update, context):
     logger.debug(f"{update.effective_message.chat_id} - Bot: {bot_message}")
     # Return response as text
     update.message.reply_text(bot_message)
-    if len(bot_message.split()) <= gciphy_max_words and random.random() < giphy_prob:
+    if len(bot_message.split()) <= giphy_max_words and random.random() < giphy_prob:
         return_gif = True
     if return_gif:
         # Also return the response as a GIF
@@ -252,6 +251,7 @@ def error(update, context):
 class TelegramBot:
     """Telegram bot based on python-telegram-bot."""
 
+    #__init__ is called when an object is created and it allow to initialize the attributes
     def __init__(self, **kwargs):
         # Extract parameters
         general_params = kwargs.get('general_params', {})
@@ -273,7 +273,7 @@ class TelegramBot:
 
         prior_ranker_weights = kwargs.get('prior_ranker_weights', {})
         cond_ranker_weights = kwargs.get('cond_ranker_weights', {})
-
+`
         chatbot_params = kwargs.get('chatbot_params', {})
         if 'telegram_token' not in chatbot_params:
             raise ValueError("Please provide `telegram_token`")
@@ -282,6 +282,8 @@ class TelegramBot:
         continue_after_restart = chatbot_params.get('continue_after_restart', True)
         data_filename = chatbot_params.get('data_filename', 'bot_data.pkl')
 
+        #initializing attributes with "self" keyword, so we can acces them later
+        #'self' binds attributes with given arguments
         self.generation_pipeline_kwargs = generation_pipeline_kwargs
         self.generator_kwargs = generator_kwargs
         self.prior_ranker_weights = prior_ranker_weights
@@ -311,8 +313,9 @@ class TelegramBot:
         else:
             self.updater = Updater(chatbot_params['telegram_token'], use_context=True)
 
-        # Add command, message and error handlers
+        # Add command, message and error handlers for our dispatcher
         dp = self.updater.dispatcher
+        #https://github.com/python-telegram-bot/python-telegram-bot/blob/master/telegram/ext/commandhandler.py 
         dp.add_handler(CommandHandler('start', start_command))
         dp.add_handler(CommandHandler('goals', goals_command))
         dp.add_handler(CommandHandler('progress', progress_command))
@@ -321,6 +324,7 @@ class TelegramBot:
         dp.add_handler(CommandHandler('motivate', motivate_command))
         dp.add_handler(CommandHandler('careers', careers_command))
         dp.add_handler(CommandHandler('reset', reset_command))
+        #calling the decorated message function to return itself and pass variables to a message handler
         dp.add_handler(MessageHandler(Filters.text, self_decorator(self, message)))
         dp.add_error_handler(error)
 
@@ -331,12 +335,20 @@ class TelegramBot:
         # Start the Bot
         self.updater.start_polling()
 
-        # Run the bot until you press Ctrl-C or the process receives SIGINT,
-        # SIGTERM or SIGABRT. This should be used most of the time, since
-        # start_polling() is non-blocking and will stop the bot gracefully.
+        # Run the bot until you press Ctrl-C to stop the process of polling
         self.updater.idle()
 
 
 def run(**kwargs):
     """Run `TelegramBot`."""
     TelegramBot(**kwargs).run()
+
+
+
+
+
+
+
+
+
+
