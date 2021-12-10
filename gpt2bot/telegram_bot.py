@@ -273,7 +273,7 @@ class TelegramBot:
 
         prior_ranker_weights = kwargs.get('prior_ranker_weights', {})
         cond_ranker_weights = kwargs.get('cond_ranker_weights', {})
-`
+
         chatbot_params = kwargs.get('chatbot_params', {})
         if 'telegram_token' not in chatbot_params:
             raise ValueError("Please provide `telegram_token`")
